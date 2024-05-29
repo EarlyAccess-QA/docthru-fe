@@ -1,0 +1,5 @@
+/* tailwind 설정 */
+
+.navBar {
+  @apply py-16.5 flex-center h-80 w-full gap-40 bg-white;
+}

@@ -7,7 +7,7 @@
 @layer base {
   :root {
     --primary-yellow: #ffc117;
-    --primary-white: #fe5493; /* 추후 유사 흰색으로 변경 필요 */
+    --primary-white: #f1f2f5; /* 추후 유사 흰색으로 변경 필요 */
     --primary-black: #262626;
     --green: 122 197 85;
     --green-light: 231 247 219;
@@ -35,7 +35,7 @@
   :root[data-theme='dark'] {
     --primary-yellow: #ffc117;
     --primary-white: #262626; /* 추후 유사 흰색으로 변경 필요 */
-    --primary-black: #fe5493;
+    --primary-black: #f1f2f5;
     --green: 241 207 255;
     --green-light: 122 197 85;
     --purple: 211 166 255;
