@@ -20,6 +20,7 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
           rel="stylesheet"
         />
+        <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
         <ReactQueryProviders>
