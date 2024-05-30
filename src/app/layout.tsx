@@ -2,7 +2,6 @@ import ReactQueryProviders from '@/utils/ReactQueryProvider';
 import type { Metadata } from 'next';
 import '../styles/globals.css';
 
-
 export const metadata: Metadata = {
   title: 'Docthru QA',
   description: 'This is the very project for QA of Docthru',
@@ -23,9 +22,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
-        <ReactQueryProviders>
-          {children}
-        </ReactQueryProviders>
+        <ReactQueryProviders>{children}</ReactQueryProviders>
       </body>
     </html>
   );

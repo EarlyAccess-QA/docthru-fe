@@ -4,7 +4,7 @@ import useDropDown from '@/hooks/useDropDown';
 import useOnClickOutside from '@/hooks/useOnClickOutside';
 import { useStore } from '@/store';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import { memo, useEffect, useRef, useState } from 'react';
 import notiImg from '../../../public/icons/noti.png';
 import notiEmptyImg from '../../../public/icons/noti_empty.png';
@@ -20,24 +20,26 @@ interface NotificationProps {
   data: NotiData[];
 }
 const NotificationDropDown = memo(({ data }: NotificationProps) => {
-  const [ notificationImg, setNotificationImg ] = useState(notiEmptyImg);
+  const [notificationImg, setNotificationImg] = useState(notiEmptyImg);
   const { isOpen: isDropDownOpen, openDropDown, closeDropDown } = useDropDown();
-  const { setLogout, previousNotification, setPreviousNotification } = useStore((state) => ({ 
+  const { setLogout, previousNotification, setPreviousNotification } = useStore((state) => ({
     setLogout: state.setLogout,
     previousNotification: state.previousNotification,
     setPreviousNotification: state.setPreviousNotification,
   }));
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleContainerClick = () => {
     isDropDownOpen ? closeDropDown() : openDropDown();
   };
 
   const handleCloseDropDown = () => {
-    setPreviousNotification(data.length);
-    setNotificationImg(notiEmptyImg);
+    if (isDropDownOpen) {
+      setPreviousNotification(data.length);
+      setNotificationImg(notiEmptyImg);
+    }
     closeDropDown();
   };
 
@@ -45,23 +47,18 @@ const NotificationDropDown = memo(({ data }: NotificationProps) => {
 
   useEffect(() => {
     if (data.length > previousNotification) {
-        const checkNotification = setTimeout(() => {
-          setNotificationImg(notiImg)
-        }, 1000);
+      const checkNotification = setTimeout(() => {
+        setNotificationImg(notiImg);
+      }, 1000);
 
-        return () => clearTimeout(checkNotification);
+      return () => clearTimeout(checkNotification);
     }
   }, [data.length, previousNotification]);
 
   return (
     <div className="relative flex-shrink-0" ref={containerRef} onClick={handleContainerClick}>
       <div className="relative cursor-pointer">
-        <Image
-          src={notificationImg}
-          alt="알림 아이콘"
-          width={24}
-          height={24}
-        />
+        <Image src={notificationImg} alt="알림 아이콘" width={24} height={24} />
       </div>
       {isDropDownOpen && (
         <div

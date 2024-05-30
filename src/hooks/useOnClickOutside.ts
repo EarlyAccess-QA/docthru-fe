@@ -8,7 +8,7 @@ import { RefObject, useEffect, useCallback } from 'react';
 
 export default function useOnClickOutside<T extends HTMLElement = HTMLElement>(
   ref: RefObject<T>,
-  handler: (event: MouseEvent | TouchEvent) => void,
+  handler: (event: MouseEvent | TouchEvent) => void
 ) {
   // 이벤트 리스너를 useCallback으로 메모이제이션
   const listener = useCallback(
@@ -18,7 +18,7 @@ export default function useOnClickOutside<T extends HTMLElement = HTMLElement>(
       }
       handler(event);
     },
-    [ref, handler],
+    [ref, handler]
   );
 
   useEffect(() => {

@@ -14,7 +14,7 @@ export default function ReactQueryProviders({ children }: React.PropsWithChildre
           //retry: 1, // API 요청 실패시 재시도 하는 옵션 (설정값 만큼 재시도)
         },
       },
-    }),
+    })
   );
 
   return (

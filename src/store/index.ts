@@ -20,7 +20,7 @@ export const useStore = create<SliceType>()(
           isLogin: state.isLogin,
           previousNotification: state.previousNotification,
         }),
-      },
-    ),
-  ),
+      }
+    )
+  )
 );

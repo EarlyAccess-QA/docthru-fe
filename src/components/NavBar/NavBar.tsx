@@ -1,16 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import LogoImg from "../../../public/images/img_logo.svg";
+// import { usePathname } from 'next/navigation';
+import LogoImg from '../../../public/images/img_logo.svg';
 import NavLoginBox from './NavLoginBox';
 
 export default function NavBar() {
-  const pathname = usePathname();
-  const pathnameArr = pathname.split('/');
-  const firstPathname = pathnameArr[1];
-
-  
+  // const pathname = usePathname();
+  // const pathnameArr = pathname.split('/');
+  // const firstPathname = pathnameArr[1];
 
   return (
     <nav className="py-16.5 flex-center h-60 w-screen gap-40 bg-white px-10">
