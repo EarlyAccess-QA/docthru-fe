@@ -96,6 +96,9 @@ const config: Config = {
       backdropBlur: {
         'custom-blur': '2.5px',
       },
+      fontFamily: {
+        quantico: ['Quantico', 'sans-serif'],
+      },
     },
   },
   plugins: [],

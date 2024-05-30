@@ -11,14 +11,14 @@ import defaultAdminImg from '../../../public/icons/admin.png';
 import defaultMemberImg from '../../../public/icons/member.png';
 import ProfileImgFallbackUI from '../FallbackUI/NavBar/ProfileImgFallbackUI';
 
-interface ProfileDropDownProps {
+interface Props {
   userName?: string;
   profileImg?: string;
   userRole?: 'general' | 'professional' | 'admin';
   isPending?: boolean;
 }
 
-const ProfileDropDown = memo(({ userName, profileImg, userRole, isPending }: ProfileDropDownProps) => {
+const ProfileDropDown = memo(({ userName, profileImg, userRole, isPending }: Props) => {
   const { isOpen: isDropDownOpen, openDropDown, closeDropDown } = useDropDown();
   const setLogout = useStore((state) => state.setLogout);
 

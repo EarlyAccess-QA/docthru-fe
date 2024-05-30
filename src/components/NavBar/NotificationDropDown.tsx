@@ -16,10 +16,10 @@ interface NotiData {
   date?: string;
 }
 
-interface NotificationProps {
+interface Props {
   data: NotiData[];
 }
-const NotificationDropDown = memo(({ data }: NotificationProps) => {
+const NotificationDropDown = memo(({ data }: Props) => {
   const [notificationImg, setNotificationImg] = useState(notiEmptyImg);
   const { isOpen: isDropDownOpen, openDropDown, closeDropDown } = useDropDown();
   const { setLogout, previousNotification, setPreviousNotification } = useStore((state) => ({
