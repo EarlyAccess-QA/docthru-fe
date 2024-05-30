@@ -6,11 +6,13 @@ import ProfileDropDown from './ProfileDropDown';
 import NotificationDropDown from './NotificationDropDown';
 
 export default function NavLoginBox() {
-  // const { isLogin } = useStore((state) => ({
+  // const { isLogin, userRole } = useStore((state) => ({
   //   isLogin: state.isLogin,
+  //   userRole: state.userRole,
   // }));
 
   const isLogin = true;
+  const userRole = 'member';
 
   const notificationData = [
     {
@@ -30,8 +32,8 @@ export default function NavLoginBox() {
     <>
       {isLogin ? (
         <div className="flex w-72 flex-shrink-0 items-center justify-between">
-          <NotificationDropDown data={notificationData} />
-          <ProfileDropDown userName={'체다치즈'} userRole="professional" />
+          {userRole === 'member' && <NotificationDropDown data={notificationData} />}
+          <ProfileDropDown userName={'체다치즈'} userRole="admin" />
         </div>
       ) : (
         <Link
