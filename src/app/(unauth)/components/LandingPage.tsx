@@ -4,6 +4,7 @@ export default function LandingPage() {
   return (
     <>
       <NavBar />
+      <div></div>
     </>
   );
 }

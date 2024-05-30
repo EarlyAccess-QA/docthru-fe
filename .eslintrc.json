@@ -19,12 +19,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "tailwindcss",
-    "prettier"
-  ],
+  "plugins": ["react", "@typescript-eslint", "tailwindcss", "prettier"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
@@ -33,11 +28,14 @@
     "semi": ["error", "always"],
     "quotes": ["error", "single", { "avoidEscape": true }],
     "tailwindcss/no-custom-classname": "off",
-    "prettier/prettier": ["error", {
-      "endOfLine": "lf",
-      "singleQuote": true,
-      "semi": true
-    }],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "lf",
+        "singleQuote": true,
+        "semi": true
+      }
+    ],
     "react/display-name": "off"
   },
   "settings": {

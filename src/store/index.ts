@@ -1,10 +1,11 @@
+import { createModalSlice } from './modalSlice';
 import { createNotificationSlice } from './notificationSlice';
 import { createAuthSlice } from './authSlice';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-import { AuthState, NotificationState } from './store.types';
+import { AuthState, ModalState, NotificationState } from './store.types';
 
-type SliceType = AuthState & NotificationState;
+type SliceType = AuthState & NotificationState & ModalState;
 
 export const useStore = create<SliceType>()(
   devtools(
@@ -12,6 +13,7 @@ export const useStore = create<SliceType>()(
       (...a) => ({
         ...createAuthSlice(...a),
         ...createNotificationSlice(...a),
+        ...createModalSlice(...a),
       }),
       {
         name: 'store',
