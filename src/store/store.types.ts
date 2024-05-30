@@ -5,3 +5,8 @@ export interface AuthState {
   userRole: '' | 'member' | 'admin';
   setUserRole: (data: '' | 'member' | 'admin') => void;
 }
+
+export interface NotificationState {
+  previousNotification: number;
+  setPreviousNotification: (data: number) => void;
+}
