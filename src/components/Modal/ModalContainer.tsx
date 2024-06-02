@@ -1,18 +1,18 @@
 'use client';
 
-import useNotScroll from '@/hooks/useNotScroll';
 import '@/styles/tailwind.css';
 import { PropsWithChildren, memo } from 'react';
-import ModalPortal from '../../ModalPortal';
 import { useStore } from '@/store';
 import { useRouter } from 'next/navigation';
+import ModalPortal from './ModalPortal';
+import useNotScroll from '@/hooks/useNotScroll';
 
 interface Props {
-  classname: string;
+  style: string;
   type?: string;
 }
 
-const ModalContainer = memo(({ classname, type, children }: PropsWithChildren<Props>) => {
+const ModalContainer = memo(({ style, type, children }: PropsWithChildren<Props>) => {
   const { modals, hideModal } = useStore((state) => ({
     modals: state.modals,
     hideModal: state.hideModal,
@@ -38,7 +38,7 @@ const ModalContainer = memo(({ classname, type, children }: PropsWithChildren<Pr
         className="fixed bottom-0 left-0 right-0 top-0 z-infinite flex h-full w-screen justify-center bg-[#00000066]"
         onClick={handleOutsideClick}
       >
-        <div className={`${classname}`} onClick={(e) => e.stopPropagation()}>
+        <div className={`${style}`} onClick={(e) => e.stopPropagation()}>
           {children}
         </div>
       </div>
