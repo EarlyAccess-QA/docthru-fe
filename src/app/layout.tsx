@@ -23,7 +23,10 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
-        <ReactQueryProviders>{children}</ReactQueryProviders>
+        <ReactQueryProviders>
+          {children}
+          <div id="modal"></div>
+        </ReactQueryProviders>
       </body>
     </html>
   );
