@@ -11,5 +11,9 @@
 }
 
 .reasonForRefusalModal {
-  @apply relative p-24 z-infinite flex flex-col h-423 w-496 justify-center  rounded-xs gap-24 border-2 border-solid border-gray-8 bg-white;
+  @apply relative p-24 z-infinite flex flex-col h-423 w-496 justify-center rounded-xs gap-24 border-2 border-solid border-gray-8 bg-white;
+}
+
+.doubleCheckForDeleteModal {
+  @apply relative p-24 z-infinite flex flex-col w-362 h-187 items-center rounded-sm gap-32 border-2 border-solid border-gray-8 bg-white;
 }
