@@ -5,7 +5,7 @@ import { PropsWithChildren, memo } from 'react';
 interface Props {
   destination?: string;
   style: string;
-  type?: 'button' | 'reset' | 'submit';
+  type: 'button' | 'reset' | 'submit';
   isLink: boolean;
   onClick?: () => void;
 }

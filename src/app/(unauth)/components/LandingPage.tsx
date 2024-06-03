@@ -1,7 +1,17 @@
+'use client';
+
+import { Button } from '@/components/Button';
 import { Chip } from '@/components/Chip';
+import ConfirmSignUpModal from '@/components/Modal/ConfirmSignUpModal';
 import NavBar from '@/components/NavBar/NavBar';
+import { useStore } from '@/store';
 
 export default function LandingPage() {
+  const { modals, showModal } = useStore((state) => ({
+    modals: state.modals,
+    showModal: state.showModal,
+  }));
+
   return (
     <>
       <NavBar />
@@ -28,7 +38,18 @@ export default function LandingPage() {
             신청 승인
           </Chip.Status>
         </div>
+        <div className="flex gap-10">
+          <Button
+            isLink={false}
+            type="button"
+            style="w-120 h-48 py-[14.5px] flex justify-center items-center shrink-0"
+            onClick={() => showModal('confirmSignUpModal')}
+          >
+            모달
+          </Button>
+        </div>
       </div>
+      {modals[modals?.length - 1] === 'confirmSignUpModal' && <ConfirmSignUpModal />}
     </>
   );
 }
