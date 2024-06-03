@@ -18,6 +18,7 @@ export const useStore = create<SliceType>()(
       {
         name: 'store',
         partialize: (state) => ({
+          userId: state.userId,
           userRole: state.userRole,
           isLogin: state.isLogin,
           previousNotification: state.previousNotification,

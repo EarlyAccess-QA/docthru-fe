@@ -7,4 +7,6 @@ export const createAuthSlice: StateCreator<AuthState> = (set) => ({
   setLogout: () => set((state) => ({ ...state, isLogin: false })),
   userRole: '',
   setUserRole: (data) => set((state) => ({ ...state, userRole: data })),
+  userId: 0,
+  setUserId: (data) => set((state) => ({ ...state, userId: data })),
 });

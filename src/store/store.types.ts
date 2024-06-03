@@ -4,6 +4,8 @@ export interface AuthState {
   setLogout: () => void;
   userRole: '' | 'member' | 'admin';
   setUserRole: (data: '' | 'member' | 'admin') => void;
+  userId: number;
+  setUserId: (data: number) => void;
 }
 
 export interface NotificationState {
