@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/Button';
 import { Chip } from '@/components/Chip';
+import AskForLoginModal from '@/components/Modal/AskForLoginModal';
 import ConfirmSignUpModal from '@/components/Modal/ConfirmSignUpModal';
 import DoubleCheckForDeleteModal from '@/components/Modal/DoubleCheckForDeleteModal';
 import ReasonForRefusalModal from '@/components/Modal/ReasonForRefusalModal';
@@ -65,11 +66,20 @@ export default function LandingPage() {
           >
             삭제 확인 모달
           </Button>
+          <Button
+            isLink={false}
+            type="button"
+            style="px-5 py-2 inline-flex justify-center items-center shrink-0 border-1 border-primary-black border-solid rounded-md"
+            onClick={() => showModal('askForLoginModal')}
+          >
+            로그인 모달
+          </Button>
         </div>
       </div>
       {modals[modals?.length - 1] === 'confirmSignUpModal' && <ConfirmSignUpModal />}
       {modals[modals?.length - 1] === 'reasonForRefusalModal' && <ReasonForRefusalModal />}
       {modals[modals?.length - 1] === 'doubleCheckForDeleteModal' && <DoubleCheckForDeleteModal />}
+      {modals[modals?.length - 1] === 'askForLoginModal' && <AskForLoginModal />}
     </>
   );
 }

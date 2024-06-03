@@ -17,3 +17,7 @@
 .doubleCheckForDeleteModal {
   @apply relative p-24 z-infinite flex flex-col w-362 h-187 items-center rounded-sm gap-32 border-2 border-solid border-gray-8 bg-white;
 }
+
+.askForLoginModal {
+  @apply relative p-24 z-infinite flex flex-col w-362 h-206 items-center rounded-sm gap-32 border-2 border-solid border-gray-8 bg-white;
+}
