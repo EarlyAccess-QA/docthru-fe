@@ -16,7 +16,7 @@ export default function ConfirmSignUpModal() {
         isLink={true}
         destination="/"
         type="button"
-        style="w-120 h-48 py-[14.5px] flex justify-center items-center shrink-0"
+        style="w-120 h-48 py-[14.5px] flex justify-center items-center shrink-0 bg-primary-black rounded-sm text-white font-semibold text-16 absolute right-28 bottom-28"
         onClick={() => hideModal('confirmSignUpModal')}
       >
         확인

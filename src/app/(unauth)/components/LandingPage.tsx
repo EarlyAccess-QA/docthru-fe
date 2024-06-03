@@ -3,6 +3,7 @@
 import { Button } from '@/components/Button';
 import { Chip } from '@/components/Chip';
 import ConfirmSignUpModal from '@/components/Modal/ConfirmSignUpModal';
+import ReasonForRefusalModal from '@/components/Modal/ReasonForRefusalModal';
 import NavBar from '@/components/NavBar/NavBar';
 import { useStore } from '@/store';
 
@@ -42,14 +43,23 @@ export default function LandingPage() {
           <Button
             isLink={false}
             type="button"
-            style="w-120 h-48 py-[14.5px] flex justify-center items-center shrink-0"
+            style="px-5 py-2 inline-flex justify-center items-center shrink-0 border-1 border-primary-black border-solid rounded-md"
             onClick={() => showModal('confirmSignUpModal')}
           >
-            모달
+            가입 확인 모달
+          </Button>
+          <Button
+            isLink={false}
+            type="button"
+            style="px-5 py-2 inline-flex justify-center items-center shrink-0 border-1 border-primary-black border-solid rounded-md"
+            onClick={() => showModal('reasonForRefusalModal')}
+          >
+            거절 사유 모달
           </Button>
         </div>
       </div>
       {modals[modals?.length - 1] === 'confirmSignUpModal' && <ConfirmSignUpModal />}
+      {modals[modals?.length - 1] === 'reasonForRefusalModal' && <ReasonForRefusalModal />}
     </>
   );
 }

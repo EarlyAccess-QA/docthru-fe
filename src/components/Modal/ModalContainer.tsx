@@ -35,7 +35,7 @@ const ModalContainer = memo(({ style, type, children }: PropsWithChildren<Props>
   return (
     <ModalPortal>
       <div
-        className="fixed bottom-0 left-0 right-0 top-0 z-infinite flex h-full w-screen justify-center bg-[#00000066]"
+        className="fixed bottom-0 left-0 right-0 top-0 z-infinite flex h-full w-screen items-center justify-center bg-[#00000066]"
         onClick={handleOutsideClick}
       >
         <div className={`${style}`} onClick={(e) => e.stopPropagation()}>

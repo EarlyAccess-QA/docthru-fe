@@ -7,5 +7,9 @@
 /* modal */
 
 .confirmSignUpModal {
-  @apply relative top-[40%] z-infinite flex h-250 w-540 justify-center rounded-xs border-2 border-solid border-gray-8 bg-white;
+  @apply relative z-infinite flex h-250 w-540 justify-center items-center rounded-xs border-2 border-solid border-gray-8 bg-white pt-108 pb-121;
+}
+
+.reasonForRefusalModal {
+  @apply relative p-24 z-infinite flex flex-col h-423 w-496 justify-center  rounded-xs gap-24 border-2 border-solid border-gray-8 bg-white;
 }
