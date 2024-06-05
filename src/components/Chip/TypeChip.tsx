@@ -12,7 +12,7 @@ const TypeChip = memo(({ color, children }: PropsWithChildren<Props>) => {
 
   return (
     <p
-      className={`font-quantico inline-flex items-center justify-center rounded-xs px-12 py-3 text-14 font-bold text-gray-6 ${bgColor}`}
+      className={`inline-flex items-center justify-center rounded-xs px-12 py-3 font-quantico text-14 font-bold text-gray-6 ${bgColor}`}
     >
       {children}
     </p>
