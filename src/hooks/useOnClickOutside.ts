@@ -25,7 +25,7 @@ export default function useOnClickOutside<T extends HTMLElement = HTMLElement>(
     document.addEventListener('mousedown', listener, true);
 
     return () => {
-      document.removeEventListener('click', listener, true);
+      document.removeEventListener('mousedown', listener, true);
     };
   }, [listener]);
 }
