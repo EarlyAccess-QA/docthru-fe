@@ -11,11 +11,13 @@ import CommentDeleteModal from '@/components/Modal/CommentDeleteModal';
 import ConfirmSignUpModal from '@/components/Modal/ConfirmSignUpModal';
 import ReasonForRefusalModal from '@/components/Modal/ReasonForRefusalModal';
 import NavBar from '@/components/NavBar/NavBar';
+import SearchBar from '@/components/Search/SearchBar';
 import { useStore } from '@/store';
 import { useState } from 'react';
 
 export default function LandingPage() {
   const [category, setCategory] = useState<string>('');
+  const [search, setSearch] = useState<string>('');
   const { modals, showModal } = useStore((state) => ({
     modals: state.modals,
     showModal: state.showModal,
@@ -106,6 +108,9 @@ export default function LandingPage() {
             list={['Next,js', 'API', 'Career', 'Modern JS', 'Web']}
             setCategory={setCategory}
           />
+        </div>
+        <div className="flex gap-10">
+          <SearchBar placeholder="챌린지 이름을 검색해보세요" setSearch={setSearch} />
         </div>
       </div>
       {modals[modals?.length - 1] === 'confirmSignUpModal' && <ConfirmSignUpModal />}
