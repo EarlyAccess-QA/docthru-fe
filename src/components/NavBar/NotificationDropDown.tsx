@@ -62,7 +62,7 @@ const NotificationDropDown = memo(({ data }: Props) => {
       </div>
       {isDropDownOpen && (
         <div
-          className="absolute right-[-5px] top-40 flex h-467 w-343 flex-col gap-15 rounded-xs border-2 border-solid border-gray-2 bg-white py-16"
+          className="absolute right-[-5px] top-40 z-infinite flex h-467 w-343 flex-col gap-15 rounded-xs border-2 border-solid border-gray-2 bg-white py-16"
           onClick={(e) => e.stopPropagation()}
         >
           <p className="flex w-full items-center px-16 text-16 font-semibold text-gray-8">알림</p>

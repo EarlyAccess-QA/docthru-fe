@@ -4,14 +4,18 @@ import { Button } from '@/components/Button';
 import Card from '@/components/Card/Card';
 import { Chip } from '@/components/Chip';
 import Comment from '@/components/Comment/Comment';
+import FormDropDown from '@/components/Dropdown/FormDropdown';
 import AskForLoginModal from '@/components/Modal/AskForLoginModal';
+import ChallengeDeleteModal from '@/components/Modal/ChallengeDeleteModal';
 import CommentDeleteModal from '@/components/Modal/CommentDeleteModal';
 import ConfirmSignUpModal from '@/components/Modal/ConfirmSignUpModal';
 import ReasonForRefusalModal from '@/components/Modal/ReasonForRefusalModal';
 import NavBar from '@/components/NavBar/NavBar';
 import { useStore } from '@/store';
+import { useState } from 'react';
 
 export default function LandingPage() {
+  const [category, setCategory] = useState<string>('');
   const { modals, showModal } = useStore((state) => ({
     modals: state.modals,
     showModal: state.showModal,
@@ -96,11 +100,19 @@ export default function LandingPage() {
             memberCapacity={5}
           />
         </div>
+        <div className="flex gap-10">
+          <FormDropDown
+            placeholder="카테고리"
+            list={['Next,js', 'API', 'Career', 'Modern JS', 'Web']}
+            setCategory={setCategory}
+          />
+        </div>
       </div>
       {modals[modals?.length - 1] === 'confirmSignUpModal' && <ConfirmSignUpModal />}
       {modals[modals?.length - 1] === 'reasonForRefusalModal' && <ReasonForRefusalModal />}
       {modals[modals?.length - 1] === 'commentDeleteModal' && <CommentDeleteModal />}
       {modals[modals?.length - 1] === 'askForLoginModal' && <AskForLoginModal />}
+      {modals[modals?.length - 1] === 'challengeDeleteModal' && <ChallengeDeleteModal />}
     </>
   );
 }

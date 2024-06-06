@@ -49,9 +49,8 @@ const CardDropDown = memo(({ challengeId }: Props) => {
             // 나중에 수정하기 페이지로 이동하게끔 변경
             href={'/'}
             className="flex flex-1 items-center justify-center border-b-1 border-solid border-gray-3 bg-white text-16 text-gray-5 hover:bg-gray-2"
-            passHref
           >
-            <a onClick={handleModifyClick}>수정하기</a>
+            <p onClick={handleModifyClick}>수정하기</p>
           </Link>
           <div
             className="flex flex-1 items-center justify-center bg-white text-16 text-gray-5 hover:bg-gray-2"
