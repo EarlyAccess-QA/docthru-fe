@@ -6,8 +6,10 @@ import Image from 'next/image';
 import { Dispatch, SetStateAction, memo, useRef } from 'react';
 import kebabImg from '../../../public/icons/Meatballs_menu.png';
 import { Button } from '../Button';
+import { useStore } from '@/store';
 
 interface Props {
+  commentId: number;
   setIsModifying: Dispatch<SetStateAction<boolean>>;
   isModifying: boolean;
   content: string;
@@ -17,11 +19,16 @@ interface Props {
 }
 
 const CommentDropDown = memo(
-  ({ setIsModifying, isModifying, content, setContent, tempContent, setTempContent }: Props) => {
+  ({ commentId, setIsModifying, isModifying, content, setContent, tempContent, setTempContent }: Props) => {
     const { isOpen: isDropDownOpen, openDropDown, closeDropDown } = useDropDown();
     const containerRef = useRef<HTMLDivElement>(null);
 
     useOnClickOutside(containerRef, closeDropDown);
+
+    const { showModal, setClickedComment } = useStore((state) => ({
+      showModal: state.showModal,
+      setClickedComment: state.setClickedComment,
+    }));
 
     const handleContainerClick = () => {
       isDropDownOpen ? closeDropDown() : openDropDown();
@@ -33,8 +40,8 @@ const CommentDropDown = memo(
     };
 
     const handleDeleteClick = () => {
-      // 댓글 삭제 요청에 대한 api 콜
-      // react query를 이용한 페이지 댓글 get 요청 다시하기
+      setClickedComment(commentId);
+      showModal('commentDeleteModal');
     };
 
     const handleCancelClick = () => {

@@ -2,17 +2,20 @@
 
 import { Button } from '@/components/Button';
 import { useStore } from '@/store';
-import Modal from '.';
 import Image from 'next/image';
+import Modal from '.';
 import modalCheckImg from '../../../public/icons/modal_check_icon.png';
 
-export default function DoubleCheckForDeleteModal() {
-  const { clearModal, hideModal } = useStore((state) => ({
-    clearModal: state.clearModal,
+export default function CommentDeleteModal() {
+  const { hideModal, clickedComment } = useStore((state) => ({
     hideModal: state.hideModal,
+    clickedComment: state.clickedComment,
   }));
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    // 댓글 삭제 요청에 대한 api 콜
+    // react query를 이용한 페이지 댓글 get 요청 다시하기
+  };
 
   return (
     <Modal.Container style="doubleCheckForDeleteModal">
@@ -25,7 +28,7 @@ export default function DoubleCheckForDeleteModal() {
           style="w-90 h-40 flex justify-center items-center rounded-sm bg-white text-gray-8 text-16 font-semibold border-1 border-solid border-gray-8"
           type="button"
           isLink={false}
-          onClick={() => hideModal('doubleCheckForDeleteModal')}
+          onClick={() => hideModal('commentDeleteModal')}
         >
           아니오
         </Button>

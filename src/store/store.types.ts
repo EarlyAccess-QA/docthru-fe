@@ -13,10 +13,21 @@ export interface NotificationState {
   setPreviousNotification: (data: number) => void;
 }
 
+export interface ChallengeState {
+  challengeId: number;
+  setChallengeId: (data: number) => void;
+}
+
+export interface CommentState {
+  clickedComment: number;
+  setClickedComment: (data: number) => void;
+}
+
 export type modalType =
   | 'confirmSignUpModal'
   | 'reasonForRefusalModal'
-  | 'doubleCheckForDeleteModal'
+  | 'commentDeleteModal'
+  | 'challengeDeleteModal'
   | 'askForLoginModal';
 
 export interface ModalState {

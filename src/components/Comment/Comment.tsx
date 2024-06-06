@@ -6,13 +6,14 @@ import defaultMemberImg from '../../../public/icons/member.png';
 import CommentDropDown from './CommentDropDown';
 
 interface Props {
+  commentId: number;
   userPhoto?: string;
   username: string;
   writtenDate: string;
   commentContent: string;
 }
 
-const Comment = memo(({ userPhoto, username, writtenDate, commentContent }: Props) => {
+const Comment = memo(({ commentId, userPhoto, username, writtenDate, commentContent }: Props) => {
   const [isModifying, setIsModifying] = useState<boolean>(false);
   const [content, setContent] = useState<string>(commentContent);
   const [tempContent, setTempContent] = useState<string>(content);
@@ -34,6 +35,7 @@ const Comment = memo(({ userPhoto, username, writtenDate, commentContent }: Prop
           </div>
         </div>
         <CommentDropDown
+          commentId={commentId}
           setIsModifying={setIsModifying}
           isModifying={isModifying}
           content={content}
