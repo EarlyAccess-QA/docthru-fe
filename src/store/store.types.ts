@@ -6,6 +6,10 @@ export interface AuthState {
   setUserRole: (data: '' | 'member' | 'admin') => void;
   userId: number;
   setUserId: (data: number) => void;
+  userAccessToken: string;
+  setUserAccessToken: (data: string) => void;
+  userRefreshToken: string;
+  setUserRefreshToken: (data: string) => void;
 }
 
 export interface NotificationState {

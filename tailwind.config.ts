@@ -74,6 +74,7 @@ const config: Config = {
       },
       black: 'var(--black)',
       white: 'var(--white)',
+      red: 'var(--red-error)',
       gray: {
         0: 'var(--gray-50)',
         1: 'var(--gray-100)',
