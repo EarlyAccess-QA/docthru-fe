@@ -8,26 +8,34 @@ import { useEffect, useState } from 'react';
 import invisibleImg from '../../../../public/icons/btn_invisible.png';
 import visibleImg from '../../../../public/icons/btn_visible.png';
 
-interface LoginFormInputs {
+interface SignUpFormInputs {
   email: string;
+  nickname: string;
   password: string;
+  confirmPassword: string;
 }
 
-export default function LoginPage() {
+export default function SignUpPage() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isValid, touchedFields },
-  } = useForm<LoginFormInputs>({
+  } = useForm<SignUpFormInputs>({
     mode: 'onBlur',
   });
 
   const [isFormValid, setIsFormValid] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isConfirmVisible, setIsConfirmVisible] = useState(false);
 
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => console.log(data);
+  const password = watch('password');
+  const onSubmit: SubmitHandler<SignUpFormInputs> = (data) => console.log(data);
   const handleVisibleClick = () => {
     setIsVisible((prev) => !prev);
+  };
+  const handleConfirmVisibleClick = () => {
+    setIsConfirmVisible((prev) => !prev);
   };
 
   useEffect(() => {
@@ -35,7 +43,7 @@ export default function LoginPage() {
   }, [isValid]);
 
   return (
-    <div className="mt-124 flex flex-col items-center gap-40">
+    <div className="mt-100 flex flex-col items-center gap-40">
       <Link href={'/'}>
         <Image src={logoImg} alt="독스루 로고 아이콘" width={320} height={72} />
       </Link>
@@ -55,6 +63,19 @@ export default function LoginPage() {
             placeholder="이메일을 입력해주세요"
           />
           {errors.email && <p className="text-red text-12">{errors.email.message}</p>}
+        </div>
+
+        <div className="flex flex-col gap-8">
+          <label className="font-medium text-gray-9">닉네임</label>
+          <input
+            type="text"
+            {...register('nickname', {
+              required: '닉네임을 입력해주세요',
+            })}
+            className={`w-full rounded-sm border-1 border-solid bg-white px-20 py-11 text-16 text-gray-8 placeholder:text-16 placeholder:text-gray-4 focus:outline-none focus:ring-2 ${touchedFields && errors.email ? 'border-red focus:ring-red' : 'border-gray-2 focus:ring-gray-7'}`}
+            placeholder="닉네임을 입력해주세요"
+          />
+          {errors.nickname && <p className="text-red text-12">{errors.nickname.message}</p>}
         </div>
 
         <div className="relative flex flex-col gap-8">
@@ -82,19 +103,41 @@ export default function LoginPage() {
           {errors.password && <p className="text-red text-12">{errors.password.message}</p>}
         </div>
 
+        <div className="relative flex flex-col gap-8">
+          <label className="font-medium text-gray-9">비밀번호 확인</label>
+          <input
+            type={`${isConfirmVisible ? 'text' : 'password'}`}
+            {...register('confirmPassword', {
+              required: '비밀번호를 한 번 더 입력해주세요',
+              validate: (value) => value === password || '비밀번호가 일치하지 않습니다',
+            })}
+            className={`w-full rounded-sm border-1 border-solid bg-white px-20 py-11 text-16 text-gray-8 placeholder:text-16 placeholder:text-gray-4 focus:outline-none focus:ring-2 ${touchedFields && errors.confirmPassword ? 'border-red focus:ring-red' : 'border-gray-2 focus:ring-gray-7'}`}
+            placeholder="비밀번호를 한 번 더 입력해주세요"
+          />
+          <Image
+            src={isConfirmVisible ? visibleImg : invisibleImg}
+            alt={`${isConfirmVisible ? '비밀번호 보이기 아이콘' : '비밀번호 가리기 아이콘'}`}
+            className="absolute right-15 top-45 cursor-pointer"
+            width={24}
+            height={24}
+            onClick={handleConfirmVisibleClick}
+          />
+          {errors.confirmPassword && <p className="text-red text-12">{errors.confirmPassword.message}</p>}
+        </div>
+
         <button
           type="submit"
           className={`flex h-48 items-center justify-center rounded-sm text-16 font-semibold text-white ${isFormValid ? 'bg-primary-black' : 'bg-gray-4'}`}
           disabled={!isFormValid}
         >
-          로그인
+          회원가입
         </button>
       </form>
       <div className="mt-[-16px] text-center">
         <p className="text-16 text-gray-6">
-          회원이 아니신가요?{' '}
-          <Link href="/signup">
-            <span className="text-primary-black hover:underline">회원가입하기</span>
+          회원이신가요?{' '}
+          <Link href="/login">
+            <span className="text-primary-black hover:underline">로그인하기</span>
           </Link>
         </p>
       </div>
