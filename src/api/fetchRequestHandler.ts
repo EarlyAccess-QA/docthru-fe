@@ -14,7 +14,7 @@ export type RequestType = {
  */
 
 export const request = async ({ url, method = 'GET', params, body }: RequestType) => {
-  const baseURL = 'https://www.docthru.store/';
+  const baseURL = 'https://docthru-be.onrender.com/';
   const queryString = params ? new URLSearchParams(params).toString() : '';
   const token = getToken();
 

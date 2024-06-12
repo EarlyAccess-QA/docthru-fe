@@ -24,7 +24,7 @@ export default function AskForLoginModal() {
         style="w-153 h-40 flex justify-center items-center rounded-sm bg-black text-white text-16 font-semibold"
         type="button"
         isLink={true}
-        destination="/"
+        destination="/login"
         onClick={() => hideModal('askForLoginModal')}
       >
         로그인하러 가기

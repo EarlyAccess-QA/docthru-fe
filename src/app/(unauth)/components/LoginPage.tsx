@@ -1,12 +1,15 @@
 'use client';
 
+import { postLogin } from '@/api/auth/postLogin';
 import Image from 'next/image';
-import logoImg from '../../../../public/images/img_logo.png';
 import Link from 'next/link';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import invisibleImg from '../../../../public/icons/btn_invisible.png';
 import visibleImg from '../../../../public/icons/btn_visible.png';
+import logoImg from '../../../../public/images/img_logo.png';
+import { useStore } from '@/store';
 
 interface LoginFormInputs {
   email: string;
@@ -14,6 +17,14 @@ interface LoginFormInputs {
 }
 
 export default function LoginPage() {
+  const router = useRouter();
+  const { setUserAccessToken, setUserRole, setUserGrade, setUserName, setLogin } = useStore((state) => ({
+    setUserAccessToken: state.setUserAccessToken,
+    setUserRole: state.setUserRole,
+    setUserGrade: state.setUserGrade,
+    setUserName: state.setUserName,
+    setLogin: state.setLogin,
+  }));
   const {
     register,
     handleSubmit,
@@ -25,7 +36,27 @@ export default function LoginPage() {
   const [isFormValid, setIsFormValid] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
+    const response = await postLogin({
+      email: data.email,
+      password: data.password,
+    });
+
+    // if (response.status === 200) {
+    //   // 성공 시 추가 작업 (예: 리디렉션 또는 메시지 표시)
+    //   console.log('로그인 성공:', response.data);
+    setUserAccessToken(response.accessToken);
+    setUserName(response.nickName);
+    setUserRole(response.userRole);
+    setUserGrade(response.userGrade);
+    setLogin();
+    router.replace('/');
+    // } else {
+    //   // 실패 시 추가 작업 (예: 오류 메시지 표시)
+    //   console.error('로그인 실패:', response);
+    // }
+  };
+
   const handleVisibleClick = () => {
     setIsVisible((prev) => !prev);
   };
@@ -54,7 +85,7 @@ export default function LoginPage() {
             className={`w-full rounded-sm border-1 border-solid bg-white px-20 py-11 text-16 text-gray-8 placeholder:text-16 placeholder:text-gray-4 focus:outline-none focus:ring-2 ${touchedFields && errors.email ? 'border-red focus:ring-red' : 'border-gray-2 focus:ring-gray-7'}`}
             placeholder="이메일을 입력해주세요"
           />
-          {errors.email && <p className="text-red text-12">{errors.email.message}</p>}
+          {errors.email && <p className="text-12 text-red">{errors.email.message}</p>}
         </div>
 
         <div className="relative flex flex-col gap-8">
@@ -79,7 +110,7 @@ export default function LoginPage() {
             height={24}
             onClick={handleVisibleClick}
           />
-          {errors.password && <p className="text-red text-12">{errors.password.message}</p>}
+          {errors.password && <p className="text-12 text-red">{errors.password.message}</p>}
         </div>
 
         <button

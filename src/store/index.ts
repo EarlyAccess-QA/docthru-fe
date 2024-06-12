@@ -22,9 +22,11 @@ export const useStore = create<SliceType>()(
       {
         name: 'store',
         partialize: (state) => ({
-          userId: state.userId,
+          userName: state.userName,
           userRole: state.userRole,
+          userGrade: state.userGrade,
           isLogin: state.isLogin,
+          userAccessToken: state.userAccessToken,
           previousNotification: state.previousNotification,
         }),
       }

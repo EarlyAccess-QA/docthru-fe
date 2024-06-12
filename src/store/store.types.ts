@@ -2,10 +2,12 @@ export interface AuthState {
   isLogin?: boolean;
   setLogin: () => void;
   setLogout: () => void;
-  userRole: '' | 'member' | 'admin';
-  setUserRole: (data: '' | 'member' | 'admin') => void;
-  userId: number;
-  setUserId: (data: number) => void;
+  userRole: '' | 'USER' | 'ADMIN';
+  setUserRole: (data: '' | 'USER' | 'ADMIN') => void;
+  userGrade: '' | 'NOMAL' | 'EXPERT';
+  setUserGrade: (data: '' | 'NOMAL' | 'EXPERT') => void;
+  userName: string;
+  setUserName: (data: string) => void;
   userAccessToken: string;
   setUserAccessToken: (data: string) => void;
   userRefreshToken: string;

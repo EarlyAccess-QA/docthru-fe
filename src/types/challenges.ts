@@ -1,6 +1,14 @@
 export interface ChallengeType {
   challengeId: number;
-  // 다른 필요한 필드들...
+  title: string;
+  link: string;
+  field: 'NEXT' | 'WEB' | 'JS' | 'API' | 'CAREER';
+  docType: 'DOCUMENT' | 'BLOG';
+  deadLine: string;
+  progress: boolean;
+  participants: number;
+  maxParticipants: number;
+  content: string;
 }
 
 export interface ChallengesType {
@@ -8,3 +16,18 @@ export interface ChallengesType {
   hasNext: boolean;
   total: number;
 }
+
+// NEXT, JS, API, WEB, CAREER
+// DOCUMENT, BLOG
+
+export interface PostChallengeType {
+  title: string;
+  link: string;
+  field: 'NEXT' | 'WEB' | 'JS' | 'API' | 'CAREER';
+  docType: 'DOCUMENT' | 'BLOG';
+  deadLine: string;
+  maxParticipants: number;
+  content: string;
+}
+
+export type GetChallengesResponseType = ChallengeType[];

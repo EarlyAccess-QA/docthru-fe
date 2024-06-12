@@ -6,14 +6,17 @@ import searchImg from '../../../public/icons/search.png';
 
 interface Props {
   placeholder: string;
+  style: string;
   setSearch: Dispatch<SetStateAction<string>>;
 }
 
-const SearchBar = memo(({ placeholder, setSearch }: Props) => {
+const SearchBar = memo(({ placeholder, style, setSearch }: Props) => {
   const [inputValue, setInputValue] = useState<string>('');
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    setSearch(inputValue);
+    if (e.key === 'Enter') {
+      setSearch(inputValue);
+    }
   };
 
   const handleSearchIconClick = () => {
@@ -21,7 +24,7 @@ const SearchBar = memo(({ placeholder, setSearch }: Props) => {
   };
 
   return (
-    <div className="flex h-40 w-375 items-center gap-4 rounded-ml border-1 border-solid border-gray-2 bg-white p-8">
+    <div className={style}>
       <Image
         src={searchImg}
         alt="검색 아이콘"

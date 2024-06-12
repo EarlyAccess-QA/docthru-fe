@@ -1,4 +1,4 @@
-type chipCategory = 'Next.js' | 'API' | 'Career' | 'Modern JS' | 'Web';
+type chipCategory = 'NEXT' | 'WEB' | 'JS' | 'API' | 'CAREER';
 type chipCategoryColor = 'bg-[#79E16A]' | 'bg-[#FF905E]' | 'bg-[#7EB2EE]' | 'bg-[#F66E6B]' | 'bg-[#F7EA5D]';
 
 export const categoryChipColor = (chipCategory: chipCategory): chipCategoryColor => {
@@ -6,19 +6,19 @@ export const categoryChipColor = (chipCategory: chipCategory): chipCategoryColor
   let randomColor;
 
   switch (chipCategory) {
-    case 'Next.js':
+    case 'NEXT':
       color = 'bg-[#79E16A]';
       break;
     case 'API':
       color = 'bg-[#FF905E]';
       break;
-    case 'Career':
+    case 'CAREER':
       color = 'bg-[#7EB2EE]';
       break;
-    case 'Modern JS':
+    case 'JS':
       color = 'bg-[#F66E6B]';
       break;
-    case 'Web':
+    case 'WEB':
       color = 'bg-[#F7EA5D]';
       break;
     default:

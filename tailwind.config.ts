@@ -46,7 +46,7 @@ const config: Config = {
       md: '1rem',
       ml: '1.25rem',
       lg: '1.5rem',
-      xl: '12.5rem',
+      xl: '2rem',
       full: '9999px',
     },
     colors: {

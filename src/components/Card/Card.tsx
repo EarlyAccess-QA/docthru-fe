@@ -7,11 +7,12 @@ import { categoryChipColor } from '@/utils/categoryChipColor';
 import Image from 'next/image';
 import clockImg from '../../../public/icons/clock.png';
 import peopleImg from '../../../public/icons/people.png';
+import { categoryChipText } from '@/utils/categoryChipText';
 
 interface Props {
   status: 'full' | 'done' | 'recruit';
   title: string;
-  chipCategory: 'Next.js' | 'API' | 'Career' | 'Modern JS' | 'Web';
+  chipCategory: 'NEXT' | 'WEB' | 'JS' | 'API' | 'CAREER';
   chipType: string;
   dueDate: string;
   currentMember: number;
@@ -20,6 +21,7 @@ interface Props {
 
 const Card = memo(({ status, title, chipCategory, chipType, dueDate, currentMember, memberCapacity }: Props) => {
   const chipCategoryColor = categoryChipColor(chipCategory);
+  const chipCategoryText = categoryChipText(chipCategory);
 
   return (
     <div className={'flex w-996 flex-col gap-16 rounded-sm border-2 border-solid border-gray-8 bg-white p-24'}>
@@ -30,7 +32,7 @@ const Card = memo(({ status, title, chipCategory, chipType, dueDate, currentMemb
       <div className="flex flex-col items-start gap-14">
         <p className="text-22 font-semibold text-gray-7">{title}</p>
         <div className="flex gap-8">
-          <Chip color={chipCategoryColor}>{chipCategory}</Chip>
+          <Chip color={chipCategoryColor}>{chipCategoryText}</Chip>
           <Chip.Category>{chipType}</Chip.Category>
         </div>
       </div>

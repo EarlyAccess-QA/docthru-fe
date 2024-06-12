@@ -1,18 +1,18 @@
 'use client';
 
-// import { useStore } from '@/store';
+import { useStore } from '@/store';
 import Link from 'next/link';
 import ProfileDropDown from './ProfileDropDown';
 import NotificationDropDown from './NotificationDropDown';
+import NavLoginBoxFallbackUI from '../FallbackUI/NavBar/NavLoginBoxFallbackUI';
 
 export default function NavLoginBox() {
-  // const { isLogin, userRole } = useStore((state) => ({
-  //   isLogin: state.isLogin,
-  //   userRole: state.userRole,
-  // }));
-
-  const isLogin = true;
-  const userRole = 'member';
+  const { isLogin, userRole, userGrade, userName } = useStore((state) => ({
+    isLogin: state.isLogin,
+    userRole: state.userRole,
+    userGrade: state.userGrade,
+    userName: state.userName,
+  }));
 
   const notificationData = [
     {
@@ -28,12 +28,16 @@ export default function NavLoginBox() {
     },
   ];
 
+  if (typeof isLogin === 'undefined') {
+    return <NavLoginBoxFallbackUI />;
+  }
+
   return (
     <>
       {isLogin ? (
         <div className="flex w-72 flex-shrink-0 items-center justify-between">
-          {userRole === 'member' && <NotificationDropDown data={notificationData} />}
-          <ProfileDropDown userName={'체다치즈'} userRole="admin" />
+          {userRole === 'USER' && <NotificationDropDown data={notificationData} />}
+          <ProfileDropDown userName={userName} userRole={userRole} userGrade={userGrade} />
         </div>
       ) : (
         <Link
