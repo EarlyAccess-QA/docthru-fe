@@ -5,13 +5,15 @@ import Link from 'next/link';
 import ProfileDropDown from './ProfileDropDown';
 import NotificationDropDown from './NotificationDropDown';
 import NavLoginBoxFallbackUI from '../FallbackUI/NavBar/NavLoginBoxFallbackUI';
+import { useEffect } from 'react';
 
 export default function NavLoginBox() {
-  const { isLogin, userRole, userGrade, userName } = useStore((state) => ({
+  const { isLogin, userRole, userGrade, userName, setLogout } = useStore((state) => ({
     isLogin: state.isLogin,
     userRole: state.userRole,
     userGrade: state.userGrade,
     userName: state.userName,
+    setLogout: state.setLogout,
   }));
 
   const notificationData = [
@@ -27,6 +29,23 @@ export default function NavLoginBox() {
       date: '2024.04.01',
     },
   ];
+
+  useEffect(() => {
+    const userAuth = window.localStorage.getItem('store');
+
+    if (userAuth) {
+      const parsedUserAuth = JSON.parse(userAuth);
+      const { state } = parsedUserAuth;
+      if (!Object.keys(state).includes('isLogin')) {
+        const changeIsLogin = setTimeout(() => {
+          setLogout();
+        }, 1000);
+
+        return () => clearTimeout(changeIsLogin);
+      }
+    }
+    return undefined;
+  }, []);
 
   if (typeof isLogin === 'undefined') {
     return <NavLoginBoxFallbackUI />;

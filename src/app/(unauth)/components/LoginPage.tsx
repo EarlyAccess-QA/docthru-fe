@@ -28,6 +28,7 @@ export default function LoginPage() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isValid, touchedFields },
   } = useForm<LoginFormInputs>({
     mode: 'onBlur',
@@ -42,19 +43,17 @@ export default function LoginPage() {
       password: data.password,
     });
 
-    // if (response.status === 200) {
-    //   // 성공 시 추가 작업 (예: 리디렉션 또는 메시지 표시)
-    //   console.log('로그인 성공:', response.data);
-    setUserAccessToken(response.accessToken);
-    setUserName(response.nickName);
-    setUserRole(response.userRole);
-    setUserGrade(response.userGrade);
-    setLogin();
-    router.replace('/');
-    // } else {
-    //   // 실패 시 추가 작업 (예: 오류 메시지 표시)
-    //   console.error('로그인 실패:', response);
-    // }
+    if (response.status === 400) {
+      setError('email', { type: 'manual', message: '이메일 또는 비밀번호를 확인해주세요.' });
+      setError('password', { type: 'manual', message: '이메일 또는 비밀번호를 확인해주세요.' });
+    } else {
+      setUserAccessToken(response.accessToken);
+      setUserName(response.nickName);
+      setUserRole(response.userRole);
+      setUserGrade(response.userGrade);
+      setLogin();
+      router.replace('/');
+    }
   };
 
   const handleVisibleClick = () => {

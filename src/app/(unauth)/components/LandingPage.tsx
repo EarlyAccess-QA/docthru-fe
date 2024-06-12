@@ -76,7 +76,7 @@ export default function LandingPage() {
             })
             .map((data) => (
               <Card
-                key={data.challengeId}
+                key={data.id}
                 title={data.title}
                 chipCategory={data.field}
                 chipType={data.docType}
@@ -84,6 +84,7 @@ export default function LandingPage() {
                 currentMember={data.participants}
                 memberCapacity={data.maxParticipants}
                 status={data.progress ? (data.participants === data.maxParticipants ? 'full' : 'recruit') : 'done'}
+                authorName="진수"
               />
             ))}
         </div>

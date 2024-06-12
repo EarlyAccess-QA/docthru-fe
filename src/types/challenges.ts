@@ -1,5 +1,5 @@
 export interface ChallengeType {
-  challengeId: number;
+  id: number;
   title: string;
   link: string;
   field: 'NEXT' | 'WEB' | 'JS' | 'API' | 'CAREER';
@@ -20,7 +20,7 @@ export interface ChallengesType {
 // NEXT, JS, API, WEB, CAREER
 // DOCUMENT, BLOG
 
-export interface PostChallengeType {
+export interface PostApplyChallengeType {
   title: string;
   link: string;
   field: 'NEXT' | 'WEB' | 'JS' | 'API' | 'CAREER';

@@ -10,6 +10,7 @@ import { memo, useRef } from 'react';
 import defaultAdminImg from '../../../public/icons/admin.png';
 import defaultMemberImg from '../../../public/icons/member.png';
 import { postLogout } from '@/api/auth/postLogout';
+import removeStore from '@/utils/removeStore';
 
 interface Props {
   userName: string;
@@ -38,13 +39,13 @@ const ProfileDropDown = memo(({ userName, userRole, userGrade }: Props) => {
   };
 
   const handleLogoutClick = async () => {
+    setLogout();
     await postLogout();
-    window.localStorage.removeItem('store');
+    removeStore();
     // setUserRole('');
     // setUserAccessToken('');
     // setUserGrade('');
     // setUserName('');
-    setLogout();
     router.push('/');
   };
 

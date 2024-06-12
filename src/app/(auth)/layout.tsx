@@ -1,3 +1,4 @@
+import NavBar from '@/components/NavBar/NavBar';
 import { ReactNode } from 'react';
 
 interface Props {
@@ -6,7 +7,8 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 top-0 flex h-screen w-screen justify-center bg-gray-1">
+    <div className="h-100vh w-100vw flex flex-col items-center justify-start bg-white">
+      <NavBar />
       {children}
     </div>
   );
