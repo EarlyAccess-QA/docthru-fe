@@ -3,11 +3,11 @@
 import useDropDown from '@/hooks/useDropDown';
 import useOnClickOutside from '@/hooks/useOnClickOutside';
 import Image from 'next/image';
-import { Dispatch, MouseEvent, SetStateAction, memo, useRef, useState } from 'react';
+import { MouseEvent, memo, useRef, useState } from 'react';
+import { UseFormSetValue } from 'react-hook-form';
+import { v4 as uuidV4 } from 'uuid';
 import arrowDownImg from '../../../public/icons/toggle_down.png';
 import arrowUpImg from '../../../public/icons/toggle_up.png';
-import { v4 as uuidV4 } from 'uuid';
-import { UseFormSetValue } from 'react-hook-form';
 
 interface Props {
   placeholder: string;

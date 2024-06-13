@@ -21,3 +21,13 @@
 .askForLoginModal {
   @apply relative p-24 z-infinite flex flex-col w-362 h-206 items-center rounded-sm gap-32 border-2 border-solid border-gray-8 bg-white;
 }
+
+/* MyTable */
+
+.tableHead {
+  @apply flex items-center pl-16 text-13 font-medium text-white flex-shrink-0
+}
+
+.tableData {
+  @apply flex items-center pl-16 text-13 text-gray-5 flex-shrink-0
+}

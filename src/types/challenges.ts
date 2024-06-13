@@ -31,3 +31,16 @@ export interface PostApplyChallengeType {
 }
 
 export type GetChallengesResponseType = ChallengeType[];
+
+export interface GetMyChallengeResponseType {
+  id: number;
+  userId: number;
+  challengeId: number;
+  status: 'WAITING' | 'REFUSE' | 'APPLY';
+  appliedAt: null | Date;
+  refuseReasons: null | string;
+  refuseAt: null | Date;
+  Challenge: ChallengeType;
+}
+
+export type GetMyChallengesResponseType = GetMyChallengeResponseType[];
