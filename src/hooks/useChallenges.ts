@@ -9,7 +9,7 @@ export const useChallenges = () => {
       return await getChallenges({ pageParam });
     },
     getNextPageParam: (lastPage) => {
-      return lastPage.hasNext ? lastPage.contents[lastPage.contents.length - 1].challengeId : undefined;
+      return lastPage.hasNext ? lastPage.contents[lastPage.contents.length - 1].id : undefined;
     },
     initialPageParam: null,
   });
