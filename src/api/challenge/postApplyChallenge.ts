@@ -27,7 +27,7 @@ export const postApplyChallenge = async ({
       field,
       docType,
       deadLine: isoString,
-      maxParticipants,
+      maxParticipants: parseInt(maxParticipants as unknown as string),
       content,
     });
     return response.data;

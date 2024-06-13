@@ -22,7 +22,7 @@ instance.interceptors.request.use(
       state: { userAccessToken, userRefreshToken },
     } = userAuth;
 
-    config.headers.Authorization = `${userAccessToken}`;
+    config.headers.Authorization = `Bearer ${userAccessToken}`;
     config.headers['Authorization-refresh'] = `${userRefreshToken}`;
 
     return config;

@@ -21,9 +21,8 @@ export default function ApplyChallengePage() {
   const watchedDocType = watch('docType');
 
   const onSubmit: SubmitHandler<PostApplyChallengeType> = async (data) => {
-    const response = await postApplyChallenge(data);
-    console.log(response);
-    // router.push('/me'); // 예시로 제출 후 이동할 페이지
+    await postApplyChallenge(data);
+    router.push('/'); // 예시로 제출 후 이동할 페이지
   };
 
   return (
@@ -87,7 +86,7 @@ export default function ApplyChallengePage() {
         <div className="mt-8 flex flex-col gap-8">
           <label className="text-14 font-medium text-gray-9">최대 인원</label>
           <input
-            {...register('maxParticipants', { required: '인원을 입력해주세요' })}
+            {...register('maxParticipants', { required: '인원을 입력해주세요', valueAsNumber: true })}
             className="h-48 w-full rounded-sm border-1 border-solid border-gray-2 bg-white px-20 py-11 text-16 text-gray-9 placeholder:text-16 placeholder:text-gray-4"
             placeholder="인원을 입력해주세요"
           />
