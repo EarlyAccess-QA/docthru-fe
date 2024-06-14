@@ -20,10 +20,11 @@ interface Props {
   currentMember: number;
   memberCapacity: number;
   authorName: string;
+  id: number;
 }
 
 const Card = memo(
-  ({ status, title, chipCategory, chipType, dueDate, currentMember, memberCapacity, authorName }: Props) => {
+  ({ status, title, chipCategory, chipType, dueDate, currentMember, memberCapacity, authorName, id }: Props) => {
     const chipCategoryColor = categoryChipColor(chipCategory);
     const chipCategoryText = categoryChipText(chipCategory);
     const formattedDueDate = changeToFormattedDate(dueDate);
@@ -34,7 +35,7 @@ const Card = memo(
       <div className={'flex w-996 flex-col gap-16 rounded-sm border-2 border-solid border-gray-8 bg-white p-24'}>
         <div className="mb-[-2px] flex items-start justify-between">
           {status === 'recruit' ? <div className="inline-flex h-32 flex-1"></div> : <Chip.Card type={status} />}
-          {userName === authorName && <CardDropDown challengeId={1} />}
+          {userName === authorName && <CardDropDown challengeId={id} />}
         </div>
         <div className="flex flex-col items-start gap-14">
           <p className="text-22 font-semibold text-gray-7">{title}</p>

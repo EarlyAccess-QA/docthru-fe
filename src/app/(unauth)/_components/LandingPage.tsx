@@ -84,6 +84,7 @@ export default function LandingPage() {
                 currentMember={data.participants}
                 memberCapacity={data.maxParticipants}
                 status={data.progress ? (data.participants === data.maxParticipants ? 'full' : 'recruit') : 'done'}
+                id={data.id}
                 authorName="진수"
               />
             ))}

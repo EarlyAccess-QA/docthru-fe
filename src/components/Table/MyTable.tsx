@@ -5,6 +5,7 @@ import { truncateText } from '@/utils/truncateText';
 import { memo } from 'react';
 import { Chip } from '../Chip';
 import Link from 'next/link';
+import { useStore } from '@/store';
 
 interface Props {
   fetchData: GetMyChallengesResponseType | undefined;
@@ -12,6 +13,8 @@ interface Props {
 }
 
 const MyTable = memo(({ fetchData, search }: Props) => {
+  const setChallengeStatus = useStore((state) => state.setChallengeStatus);
+
   return (
     <div className="flex w-full flex-col gap-8">
       <div className="flex h-36 items-center overflow-hidden rounded-xs bg-gray-8">
@@ -41,7 +44,9 @@ const MyTable = memo(({ fetchData, search }: Props) => {
                   <div className="tableData w-84">{data.Challenge.docType === 'BLOG' ? '블로그' : '공식문서'}</div>
                   <div className="tableData w-84">{data.Challenge.field}</div>
                   <Link href={`/me/challenge/${data.challengeId}`}>
-                    <div className="tableData w-358">{truncateText(data.Challenge.title)}</div>
+                    <div className="tableData w-358" onClick={() => setChallengeStatus(data.status)}>
+                      {truncateText(data.Challenge.title)}
+                    </div>
                   </Link>
                   <div className="tableData w-94">{data.Challenge.maxParticipants}</div>
                   <div className="tableData w-94">{data.appliedAt ? data.appliedAt?.toISOString() : '데이터 없음'}</div>

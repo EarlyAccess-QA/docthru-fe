@@ -85,6 +85,7 @@ export default function MyChallengePage() {
                           : 'recruit'
                         : 'done'
                     }
+                    id={data.Challenge.id}
                     authorName="진수"
                   />
                 ))

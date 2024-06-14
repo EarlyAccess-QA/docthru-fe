@@ -1,6 +1,6 @@
-export const changeToFormattedDate = (dateString: string) => {
+export const changeToFormattedDate = (dateString: string | undefined) => {
   // Date 객체 생성
-  const date = new Date(dateString);
+  const date = new Date(dateString as string);
 
   // 특정 형식으로 변환 (예: YYYY-MM-DD HH:MM:SS)
   const year = date.getFullYear();

@@ -26,6 +26,7 @@ export const useStore = create<SliceType>()(
           userRole: state.userRole,
           userGrade: state.userGrade,
           isLogin: state.isLogin,
+          challengeStatus: state.challengeStatus,
           userAccessToken: state.userAccessToken,
           previousNotification: state.previousNotification,
         }),

@@ -22,6 +22,8 @@ export interface NotificationState {
 export interface ChallengeState {
   challengeId: number;
   setChallengeId: (data: number) => void;
+  challengeStatus: '' | 'APPLY' | 'REFUSE' | 'WAITING';
+  setChallengeStatus: (data: '' | 'APPLY' | 'REFUSE' | 'WAITING') => void;
 }
 
 export interface CommentState {
@@ -34,7 +36,8 @@ export type modalType =
   | 'reasonForRefusalModal'
   | 'commentDeleteModal'
   | 'challengeDeleteModal'
-  | 'askForLoginModal';
+  | 'askForLoginModal'
+  | 'cancelApplyingChallengeModal';
 
 export interface ModalState {
   modals: modalType[];
