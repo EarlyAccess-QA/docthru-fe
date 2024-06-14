@@ -44,3 +44,17 @@ export interface GetMyChallengeResponseType {
 }
 
 export type GetMyChallengesResponseType = GetMyChallengeResponseType[];
+
+// admin
+
+export interface AppliedChallenge {
+  id: number;
+  userId: number;
+  challengeId: number;
+  status: 'WAITING' | 'REFUSE' | 'APPLY';
+  appliedAt: null | Date;
+  refuseReasons: null | string;
+  refuseAt: null | Date;
+}
+
+export type AppliedChallenges = AppliedChallenge[];

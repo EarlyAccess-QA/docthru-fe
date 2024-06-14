@@ -7,7 +7,7 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   return (
-    <div className="h-100vh w-100vw flex flex-col items-center justify-start bg-white">
+    <div className="w-100vw flex h-screen flex-col items-center justify-start bg-gray-0">
       <NavBar />
       {children}
     </div>

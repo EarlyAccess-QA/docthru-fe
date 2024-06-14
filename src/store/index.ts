@@ -1,13 +1,14 @@
-import { createCommentSlice } from './commentSlice';
+import { createNavSlice } from './navSlice';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 import { createAuthSlice } from './authSlice';
 import { createChallengeSlice } from './challengeSlice';
+import { createCommentSlice } from './commentSlice';
 import { createModalSlice } from './modalSlice';
 import { createNotificationSlice } from './notificationSlice';
-import { AuthState, ChallengeState, CommentState, ModalState, NotificationState } from './store.types';
+import { AuthState, ChallengeState, CommentState, ModalState, NavState, NotificationState } from './store.types';
 
-type SliceType = AuthState & NotificationState & ModalState & ChallengeState & CommentState;
+type SliceType = AuthState & NotificationState & ModalState & ChallengeState & CommentState & NavState;
 
 export const useStore = create<SliceType>()(
   devtools(
@@ -18,6 +19,7 @@ export const useStore = create<SliceType>()(
         ...createModalSlice(...a),
         ...createChallengeSlice(...a),
         ...createCommentSlice(...a),
+        ...createNavSlice(...a),
       }),
       {
         name: 'store',

@@ -52,7 +52,7 @@ export default function LoginPage() {
       setUserRole(response.userRole);
       setUserGrade(response.userGrade);
       setLogin();
-      router.replace('/');
+      router.replace('/login/flow');
     }
   };
 

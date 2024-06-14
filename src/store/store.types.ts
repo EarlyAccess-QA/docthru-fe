@@ -45,3 +45,8 @@ export interface ModalState {
   hideModal: (type: modalType) => void;
   clearModal: () => void;
 }
+
+export interface NavState {
+  clickedNavTab: string;
+  setClickedNavTab: (data: string) => void;
+}
