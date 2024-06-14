@@ -26,7 +26,7 @@ export default function NavBar() {
                 <Link
                   key={tab}
                   href={tab === '챌린지 관리' ? '/admin/manage' : '/'}
-                  className={`px-17 py-21 text-15 font-bold text-gray-5 ${firstPathname === 'admin' && tab === '챌린지 관리' ? 'text-gray-8' : 'text-gray-5'}`}
+                  className={`px-17 py-21 text-15 font-bold text-gray-5 ${firstPathname === 'admin' && tab === '챌린지 관리' ? 'text-gray-8' : 'text-gray-5'} ${firstPathname === '' && tab === '챌린지 목록' ? 'text-gray-8' : 'text-gray-5'}`}
                 >
                   {tab}
                 </Link>
