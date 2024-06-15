@@ -1,35 +1,37 @@
 'use client';
 
 import { getSpecificChallenge } from '@/api/challenge/getSpecificChallenge';
+import { Button } from '@/components/Button';
+import CardDropDown from '@/components/Card/CardDropDown';
 import { Chip } from '@/components/Chip';
-import MyWaitingDropDown from '@/components/Dropdown/MyWaitingDropDown';
+import ChallengeDeleteModal from '@/components/Modal/ChallengeDeleteModal';
+import ReasonForRefusalModal from '@/components/Modal/ReasonForRefusalModal';
 import { useStore } from '@/store';
 import { ChallengeType } from '@/types/challenges';
 import { categoryChipColor } from '@/utils/categoryChipColor';
 import { categoryChipText } from '@/utils/categoryChipText';
-import { statusChipColor } from '@/utils/statusChipColor';
-import { useQuery } from '@tanstack/react-query';
-import Image from 'next/image';
-import { useParams } from 'next/navigation';
-import clockImg from '../../../../public/icons/clock.png';
-import peopleImg from '../../../../public/icons/people.png';
-import clickImg from '../../../../public/icons/icon_click.png';
 import { changeToFormattedDate } from '@/utils/changeToFormattedDate';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import Image from 'next/image';
 import Link from 'next/link';
-import CancelApplyingChallengeModal from '@/components/Modal/CancelApplyingChallengeModal';
+import { useParams, useRouter } from 'next/navigation';
+import clockImg from '../../../../public/icons/clock.png';
+import clickImg from '../../../../public/icons/icon_click.png';
+import peopleImg from '../../../../public/icons/people.png';
+import { putAcceptChallenge } from '@/api/admin/putAcceptChallenge';
 
 type chipCategory = 'NEXT' | 'WEB' | 'JS' | 'API' | 'CAREER';
 
 export default function AppliedSpecificChallengePage() {
   const { id } = useParams();
   const challengeId = parseInt(id as string);
-  const { challengeStatus, showModal, modals } = useStore((state) => ({
+  const router = useRouter();
+  const { challengeStatus, showModal, modals, clearModal } = useStore((state) => ({
     challengeStatus: state.challengeStatus,
     showModal: state.showModal,
     modals: state.modals,
+    clearModal: state.clearModal,
   }));
-
-  const { backgroundColor: chipBackgroundColor, textColor: chipTextColor } = statusChipColor(challengeStatus);
 
   const { data: challengeData, error } = useQuery<ChallengeType>({
     queryKey: ['challenge', challengeId],
@@ -45,12 +47,28 @@ export default function AppliedSpecificChallengePage() {
     return <div>Error fetching challenge data.</div>;
   }
 
+  const acceptChallengeMutation = useMutation({
+    mutationFn: putAcceptChallenge,
+  });
+
+  const handleSubmit = () => {
+    acceptChallengeMutation.mutate(
+      { challengeId: challengeId, status: 'APPLY', reasons: '승인합니다.' },
+      {
+        onSuccess: () => {
+          clearModal();
+          router.replace('/admin/manage');
+        },
+      }
+    );
+  };
+
   return (
     <div className="mt-24 flex w-996 flex-col gap-16">
       <div className={'flex w-full flex-col gap-16'}>
         <div className="flex justify-between">
           <p className="flex-1 text-24 font-semibold text-gray-8">{challengeData?.title}</p>
-          <MyWaitingDropDown challengeId={challengeId} />
+          <CardDropDown challengeId={challengeId} />
         </div>
         <div className="flex gap-8">
           {challengeData?.field && <Chip color={chipCategoryColor}>{chipCategoryText}</Chip>}
@@ -88,8 +106,28 @@ export default function AppliedSpecificChallengePage() {
             </Link>
           </div>
         )}
+        <div className="w-full border-t-1 border-solid border-gray-2"></div>
+        <div className="flex w-full justify-end gap-12">
+          <Button
+            style="w-153 h-48 flex justify-center items-center bg-[#ffe7e7] rounded-sm text-[#F24744] text-16 font-semibold"
+            isLink={false}
+            type="button"
+            onClick={() => showModal('reasonForRefusalModal')}
+          >
+            거절하기
+          </Button>
+          <Button
+            style="w-153 h-48 flex justify-center items-center bg-primary-black rounded-sm text-white text-16 font-semibold"
+            isLink={false}
+            type="button"
+            onClick={handleSubmit}
+          >
+            승인하기
+          </Button>
+        </div>
       </div>
-      {modals[modals.length - 1] === 'cancelApplyingChallengeModal' && <CancelApplyingChallengeModal />}
+      {modals[modals.length - 1] === 'challengeDeleteModal' && <ChallengeDeleteModal />}
+      {modals[modals.length - 1] === 'reasonForRefusalModal' && <ReasonForRefusalModal />}
     </div>
   );
 }
